@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pop Masters Inc.</title>
+    <style>
+        body {
+            background: radial-gradient(circle, #E6E6FA, #D8BFD8);
+            font-family: Arial;
+            padding: 20px;
+            margin: 0;
+        }
+        .bubble-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 40px);
+            gap: 5px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .bubble {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, #ADD8E6, #87CEEB);
+            border-radius: 50%;
+            border: 2px solid #4682B4;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .bubble:hover {
+            transform: scale(1.1);
+        }
+        .bubble.popped {
+            background: #DDD;
+            transform: scale(0.8);
+            border-color: #999;
+        }
+        .header {
+            text-align: center;
+            background: rgba(255,255,255,0.8);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        .stats {
+            background: #F0F8FF;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .services {
+            background: #FFF8DC;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #DAA520;
+        }
+        .pop-counter {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF6347;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🫧 Pop Masters Inc. 🫧</h1>
+        <p><em>"Professional Bubble Wrap Popping Since 1980"</em></p>
+        <p>Satisfaction Rate: 100% (It's literally impossible to be unsatisfied!)</p>
+    </div>
+    
+    <div class="stats">
+        <h2>Try Our Demo Bubble Wrap!</h2>
+        <p>Bubbles Popped: <span class="pop-counter" id="counter">0</span></p>
+        <div class="bubble-grid" id="bubbleGrid"></div>
+        <button onclick="resetBubbles()">Reset Bubble Wrap</button>
+    </div>
+    
+    <div class="services">
+        <h2>Our Professional Services:</h2>
+        <p><strong> Precision Popping:</strong> We pop each bubble with surgical precision - $0.50 per bubble</p>
+        <p><strong> Rhythmic Popping:</strong> Bubble popping choreographed to music - $25/hour</p>
+        <p><strong> Speed Popping:</strong> World record attempts and competitions - $100/session</p>
+        <p><strong> Therapeutic Popping:</strong> Stress relief through systematic bubble elimination - $40/hour</p>
+        
+        <h3>Special Packages:</h3>
+        <p> <strong>"The Satisfier":</strong> 1000 bubbles professionally popped - $299</p>
+        <p> <strong>"Ultimate Pop Experience":</strong> Giant bubble wrap + certificate - $99</p>
+    </div>
+    
+    <p style="text-align: center; font-style: italic; color: #555;">
+        "Pop Masters saved my sanity! Their bubble popping technique is flawless!" - Anonymous Customer
+    </p>
+    
+    <script>
+        let popCount = 0;
+        
+        function createBubbles() {
+            const grid = document.getElementById('bubbleGrid');
+            grid.innerHTML = '';
+            for(let i = 0; i < 32; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.onclick = function() {
+                    if(!this.classList.contains('popped')) {
+                        this.classList.add('popped');
+                        popCount++;
+                        document.getElementById('counter').textContent = popCount;
+                    }
+                };
+                grid.appendChild(bubble);
+            }
+        }
+        
+        function resetBubbles() {
+            popCount = 0;
+            document.getElementById('counter').textContent = '0';
+            createBubbles();
+        }
+        
+        createBubbles();
+    </script>
+</body>
+</html>
